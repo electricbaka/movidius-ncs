@@ -71,6 +71,7 @@ img_out = numpy.zeros((768, 1366, 3), numpy.uint8)
 img_face = img_out.copy()
 counter = 0
 facerect = ()
+cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 #============================================================
 # Main Loop
@@ -94,7 +95,6 @@ while True:
 
 	# Face detection only once in 10 times
 	if counter >= 10:
-		cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 		facerect = cascade.detectMultiScale(frame, scaleFactor=1.1, minNeighbors=1, minSize=(100, 100))
 		print(facerect)
 		counter = 0
